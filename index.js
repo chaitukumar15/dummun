@@ -1,6 +1,10 @@
 var express=require("express");
-
+var fs = require('fs');
 var app=express();
+
+var path = require('path');
+
+
 
 var multer=require("multer");
 
@@ -9,7 +13,11 @@ var store=multer.diskStorage({
         
         console.log(__dirname);
         console.log(file);
-        
+        const dir = path.join(__dirname, "/image");
+
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true });
+        }
       
         cb(null,__dirname+"/image");
        
@@ -25,6 +33,8 @@ var store=multer.diskStorage({
 var uplaod=multer({storage:store})
 
 app.get("/product",uplaod.single("file"),(req,res)=>{
+
+
 
     // console.log(req.file);
     // var h=req.file.size*0.001;

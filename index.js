@@ -37,7 +37,7 @@ app.get("/product",uplaod.single("file"),(req,res)=>{
 
 
     // console.log(req.file);
-    // var h=req.file.size*0.001;
+    var h=req.file.size*0.001;
     // res.send("hello")
 res.send({
     n:h,
